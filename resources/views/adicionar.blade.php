@@ -9,7 +9,17 @@
   <body>
     <div class="container">
     <h1 class="mb-5">ADICIONAR CEP</h1>
-<form action="{{route('buscar')}}" method="GET">
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+<form action="{{route('salvar')}}" method="POST">
+@csrf
         <div class="form-group">
             <label>CEP</label>
             <input type="text" class="form-control" name="CEP" value="{{$cep}}">

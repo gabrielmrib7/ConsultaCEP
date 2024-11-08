@@ -11,7 +11,7 @@ class SalvarRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,12 @@ class SalvarRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'CEP' => 'required|string',
+            'bairro' => 'required|string',
+            'logradouro' => 'required|string',
+            'cidade' => 'required|string',
+            'estado' => 'required|string',
+            'numero' => 'required|string',
         ];
     }
 }
