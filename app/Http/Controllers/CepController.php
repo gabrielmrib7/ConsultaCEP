@@ -5,9 +5,21 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Cep\SalvarRequest;
 use Http;
 use Illuminate\Http\Request;
+use App\Models\Endereco;
 
 class CepController extends Controller
 {
+    public function index()
+    {
+        $enderecos = Endereco::all();
+        return view('tabela')->with([
+            'enderecos' => $enderecos,
+        ]);
+    }
+    public function adicionar()
+    {
+        return view('busca');
+    }
     public function buscar( Request $request)
     {
         $cep = $request->input('CEP');
@@ -25,6 +37,15 @@ class CepController extends Controller
 
     public function salvar(SalvarRequest $request)
     {
-        dd($request->all());
+        Endereco::create([
+            'cep' => $request->input('CEP'),
+            'logradouro' => $request->input('logradouro'),
+            'numero' => $request->input('numero'),
+            'bairro' => $request->input('bairro'),
+            'cidade' => $request->input('cidade'),
+            'estado' => $request->input('estado'),
+        ]);
+
+        return redirect('/');
     }
 }

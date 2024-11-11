@@ -8,7 +8,7 @@
   </head>
   <body>
     <div class="container">
-    <h1 class="mb-5">ADICIONAR CEP</h1>
+    <h1 class="my-5">ADICIONAR CEP</h1>
     @if ($errors->any())
     <div class="alert alert-danger">
         <ul>
@@ -44,7 +44,7 @@
     <label>Estado</label>
     <input type="text" class="form-control" name="estado" value="{{$estado}}">
 </div>
-  <button type="submit" class="btn btn-primary">Salvar</button>
+  <button type="submit" class="btn btn-primary mt-3">Salvar</button>
 </form>
     </div>
 

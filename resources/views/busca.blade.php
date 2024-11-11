@@ -8,13 +8,15 @@
   </head>
   <body>
     <div class="container">
-    <h1 class="mb-5">BUSCAR CEP</h1>
+    <h1 class="my-5">BUSCAR CEP</h1>
     <form action="{{route('buscar')}}" method="GET">
-  <div class="mb-3">
-    <label>CEP</label>
-    <input type="text" class="form-control" name="CEP">
+
+  <div class="mb-3 form-floating">
+    <input type="text" class="form-control" id="floatingInput" placeholder="CEP" name="CEP">
+    <label for="floatingInput">CEP</label>
 </div>
-  <button type="submit" class="btn btn-primary">Enviar</button>
+
+  <button type="submit" class="btn btn-dark">Enviar</button>
 </form>
     </div>
 
