@@ -10,6 +10,20 @@
     <div class="container p-0">
     <h1 class="my-5">Enderecos Cadastrados</h1>
     <a href="{{route('adicionar')}}" type="button" class="btn btn-dark">Adicionar CEP</a>
+
+    @if (session('sucesso'))
+        <div class="alert alert-success my-3" role="alert">
+            {{session('sucesso')}}
+    </div>
+
+    @endif
+    @if (session('erro'))
+        <div class="alert alert-danger my-3" role="alert">
+            {{session('erro')}}
+        </div>
+    @endif
+
+
 <table class="table table-dark mt-5 shadow">
   <thead>
     <tr>

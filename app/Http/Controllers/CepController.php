@@ -24,6 +24,7 @@ class CepController extends Controller
     {
         $cep = $request->input('CEP');
         $response = Http::get("https://viacep.com.br/ws/$cep/json/")->json();
+        if($response != null){
         return view('adicionar')->with
         ([
             'cep' => $request->input('CEP'),
@@ -32,11 +33,21 @@ class CepController extends Controller
             'cidade' => $response['localidade'],
             'estado' => $response['uf'],
         ]);
+        }
+        else{
+            return redirect('/')->withErro('CEP Inválido!');
+        }
 
     }
 
     public function salvar(SalvarRequest $request)
     {
+        $matchThese = ['CEP' => $request->input('CEP'), 'numero' => $request->input('numero')];
+        $endereco = Endereco::where($matchThese)->first();
+
+        if(!$endereco)
+        {
+
         Endereco::create([
             'cep' => $request->input('CEP'),
             'logradouro' => $request->input('logradouro'),
@@ -46,6 +57,9 @@ class CepController extends Controller
             'estado' => $request->input('estado'),
         ]);
 
-        return redirect('/');
+        return redirect('/')->withSucesso('Endereco salvo com sucesso!');
+    }
+
+        return redirect('/')->withErro('O Endereco ja esta cadastrado');
     }
 }
